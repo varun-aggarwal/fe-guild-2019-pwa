@@ -71,7 +71,7 @@ window.addEventListener('load', () => {
     document.querySelector('#manifestPlaceholder').setAttribute('href', manifestURL);
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register(`/sw.js`)
+        navigator.serviceWorker.register(`${baseUrl}sw.js`)
             .then( registration => {
             // Registration was successful
             console.log('ServiceWorker registration successful with scope: ', registration.scope);
