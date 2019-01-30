@@ -1,3 +1,4 @@
+
 const manifest = {
     'name': 'Progressive Selfies',
     'short_name': 'PWA Selfies',
@@ -38,7 +39,7 @@ const manifest = {
             'sizes': '512x512'
         }
     ],
-    //"start_url": "index.html",
+    //'start_url': '/index.html',
     //"scope": ".",
     'display': 'standalone',
     'orientation': 'portrait-primary',
@@ -48,7 +49,7 @@ const manifest = {
     'dir': 'ltr',
     'lang': 'en-US'
 };
-let deferredPrompt;
+
 
 window.addEventListener('load', () => {
     const base = document.querySelector('base');
@@ -70,17 +71,19 @@ window.addEventListener('load', () => {
     document.querySelector('#manifestPlaceholder').setAttribute('href', manifestURL);
 
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register(`${baseUrl}sw.js`)
-            .then(registration => {
-                // Registration was successful
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            })
-            .catch(err => {
-                // registration failed :(
-                console.log('ServiceWorker registration failed: ', err);
-            });
+        navigator.serviceWorker.register(`/sw.js`)
+            .then( registration => {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch(err => {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
     }
 });
+
+let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', event => {
     // Prevent Chrome 67 and earlier from automatically showing the prompt
